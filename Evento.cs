@@ -7,6 +7,7 @@ namespace StateMachine
     public class Evento
     {
         public string Id { get; set; }
+        public string Layout { get; set; }
         public EnumEstado Estado { get; set; }
     }
 }

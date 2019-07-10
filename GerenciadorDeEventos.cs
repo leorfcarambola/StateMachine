@@ -4,26 +4,81 @@ using System.Text;
 
 namespace StateMachine
 {
-    public class GerenciadorDeEventos : IGeren5ciadorDeEventos
+    public class GerenciadorDeEventos : IGerenciadorDeEventos
     {
-        public void ApontarErro()
-        {
-            throw new NotImplementedException();
-        }
+        Evento evento = new Evento();
 
-        public void ApontarRecebimento()
+        public void NovoEvento()
         {
-            throw new NotImplementedException();
-        }
-
-        public void EnviarEvento()
-        {
-            throw new NotImplementedException();
+            if (evento.Id == null)
+            {
+                evento.Estado = EnumEstado.NO;
+            }
+            else if(evento.Estado == EnumEstado.NO)
+            {
+                PrepararEnvio();
+            }
         }
 
         public void PrepararEnvio()
         {
-            throw new NotImplementedException();
+            if (evento.Estado == EnumEstado.NO)
+            {
+                evento.Estado = EnumEstado.AE;
+            }else if(evento.Estado == EnumEstado.AE)
+            {
+                EnviarEvento();
+            }
+        }
+
+        public void EnviarEvento()
+        {
+            switch (evento.Estado)
+            {
+                case EnumEstado.AE:
+                    evento.Estado = EnumEstado.EV;
+                    break;
+
+            }
+            if (evento.Estado == EnumEstado.AE)
+            {
+                evento.Estado = EnumEstado.EV;
+            }
+            else if(evento.Estado == EnumEstado.EV)
+            {
+                if(evento.Estado == EnumEstado.RE)
+                {
+                    ApontarErro();
+                }else if(evento.Estado == EnumEstado.RS)
+                {
+                    ApontarRecebimento();
+                }
+                
+            }
+        }
+
+        public void ApontarErro()
+        {
+            if (evento.Estado == EnumEstado.EV)
+            {
+                evento.Estado = EnumEstado.RE;
+            }
+            else
+            {
+                ApontarRecebimento();
+            }
+        }
+
+        public void ApontarRecebimento()
+        {
+            if (evento.Estado == EnumEstado.)
+            {
+                evento.Estado = EnumEstado.RE;
+            }
+            else
+            {
+                ApontarRecebimento();
+            }
         }
 
         public void ReenviarEvento()
