@@ -4,7 +4,7 @@ using System.Text;
 
 namespace StateMachine
 {
-    public interface IGeren5ciadorDeEventos
+    public interface IGerenciadorDeEventos
     {
         void NovoEvento();
         void PrepararEnvio();

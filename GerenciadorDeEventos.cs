@@ -70,7 +70,7 @@ namespace StateMachine
         }
 
         public void ApontarRecebimento()
-        {
+        {/*
             if (evento.Estado == EnumEstado.)
             {
                 evento.Estado = EnumEstado.RE;
@@ -78,7 +78,7 @@ namespace StateMachine
             else
             {
                 ApontarRecebimento();
-            }
+            }*/
         }
 
         public void ReenviarEvento()
